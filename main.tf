@@ -76,29 +76,3 @@ resource "aws_security_group" "web" {
     Name = "${var.prefix}-web-sg"
   }
 }
-
-resource "aws_security_group" "web" {
-    cidr_blocks = [aws_vpc.vpc.cidr_block]
-  }
-
-  ingress {
-    description = "Web security group. HTTP"
-    from_port   = 8080
-    to_port     = 8080
-    protocol    = "tcp"
-    cidr_blocks = [aws_vpc.vpc.cidr_block]
-  }
-
-  ingress {
-    description = "SMTP ACCESS"
-    from_port   = 25
-    to_port     = 25
-    protocol    = "tcp"
-    cidr_blocks = [aws_vpc.vpc.cidr_block]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-  }
-}
